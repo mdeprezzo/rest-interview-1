@@ -26,3 +26,9 @@ The query response from the website is a JSON response with the following five f
 
 * Write your code following the TDD approach.
 * Do not use web frameworks (e.g. Flask, Django, etc.).
+
+## Instructions
+
+1. Fork this repository.
+2. Write your code.
+3. Commit and push your changes.
