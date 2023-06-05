@@ -1,4 +1,4 @@
-# REST API: Get Article Titles interview
+# REST API: Interview 1
 
 Write an HTTP GET method to retrieve information from an articles database. The query response is paginated and can be further accessed by appending to the query string &page=num where num is the page number.
 
