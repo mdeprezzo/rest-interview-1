@@ -32,3 +32,11 @@ The query response from the website is a JSON response with the following five f
 1. Fork this repository.
 2. Write your solution.
 3. Commit and push your changes.
+
+## Evaluation Criteria
+
+* Code quality (clean, readable, maintainable).
+* Test quality (coverage, assertions, etc.).
+* Solution completeness.
+* Performance.
+* Architecture (design, separation of concerns, etc.).
