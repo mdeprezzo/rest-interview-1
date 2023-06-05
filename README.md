@@ -30,5 +30,5 @@ The query response from the website is a JSON response with the following five f
 ## Instructions
 
 1. Fork this repository.
-2. Write your code.
+2. Write your solution.
 3. Commit and push your changes.
