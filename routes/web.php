@@ -1,9 +1,6 @@
 <?php
 
-use App\Clients\ArticleClient;
-use App\Http\Resources\ArticleResource;
-use Illuminate\Http\Request;
-use App\Services\ArticleService;
+use App\Http\Controllers\ArticlesController;
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
@@ -22,8 +19,4 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('articles', function (Request $request, ArticleService $articleService) {
-    $articles = $articleService->getAll($request->all());
-
-    return ArticleResource::collection($articles);
-});
+$router->get('articles', 'ArticlesController');
