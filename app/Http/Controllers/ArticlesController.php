@@ -19,7 +19,7 @@ class ArticlesController extends Controller
     public function __invoke(Request $request)
     {
         $articles = $this->articleService->getAll($request->all());
-
+        
         return ArticleResource::collection($articles);      
     }
 }

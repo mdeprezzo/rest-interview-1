@@ -17,26 +17,27 @@ class ArticleService
 
     public function getAll(array $filters = [])
     {
-        $page = Arr::get($filters, 'page', 1);
+        $articles = $this->recursiveGetAll($filters);
 
+        return array_filter($articles, fn ($a) => $a['title'] || $a['story_title']);
+    }
+
+    public function recursiveGetAll(array $filters = [], int $page = 1)
+    {
         $results = $this->client->getAll(
             [
                 ...$filters,
                 'page' => $page
             ]            
         );
-
+        
         $articles = Arr::get($results, 'data', []);
+        $totalPages = Arr::get($results, 'total_pages', 0);
+        
+        if ($totalPages > $page) {
+            $articles = array_merge($articles, $this->recursiveGetAll($filters, $page + 1));
+        }        
 
-        if ($page < $results['total_pages']) {
-            for ($p = $page + 1; $p <= $results['total_pages']; $p++) {
-                $articles = array_merge($articles, $this->getAll([
-                    ...$filters,
-                    'page' => $p
-                ]));
-            }
-        }
-
-        return array_filter($articles, fn ($a) => $a['title'] || $a['story_title']);
+        return $articles;
     }
 }
