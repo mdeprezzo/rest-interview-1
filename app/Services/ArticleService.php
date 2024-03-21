@@ -15,14 +15,14 @@ class ArticleService
         $this->client = $client;
     }
 
-    public function getAll(array $filters = [])
+    public function getAll(array $filters = []): array
     {
         $articles = $this->recursiveGetAll($filters);
 
         return array_filter($articles, fn ($a) => $a['title'] || $a['story_title']);
     }
 
-    protected function recursiveGetAll(array $filters = [], int $page = 1)
+    protected function recursiveGetAll(array $filters = [], int $page = 1, array &$articles = []): array
     {
         $results = $this->client->getAll(
             [
@@ -31,13 +31,9 @@ class ArticleService
             ]            
         );
         
-        $articles = Arr::get($results, 'data', []);
+        $articles = array_merge($articles, Arr::get($results, 'data', []));
         $totalPages = Arr::get($results, 'total_pages', 0);
-        
-        if ($totalPages > $page) {
-            $articles = array_merge($articles, $this->recursiveGetAll($filters, $page + 1));
-        }        
 
-        return $articles;
+        return $totalPages > $page ? $this->recursiveGetAll($filters, $page + 1, $articles) : $articles;
     }
 }
