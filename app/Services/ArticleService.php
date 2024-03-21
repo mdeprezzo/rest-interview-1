@@ -22,7 +22,7 @@ class ArticleService
         return array_filter($articles, fn ($a) => $a['title'] || $a['story_title']);
     }
 
-    public function recursiveGetAll(array $filters = [], int $page = 1)
+    protected function recursiveGetAll(array $filters = [], int $page = 1)
     {
         $results = $this->client->getAll(
             [
