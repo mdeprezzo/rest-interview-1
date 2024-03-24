@@ -36,4 +36,9 @@ class ArticleService
 
         return $totalPages > $page ? $this->recursiveGetAll($filters, $page + 1, $articles) : $articles;
     }
+
+    public function getClient()
+    {
+        return $this->client;
+    }
 }
