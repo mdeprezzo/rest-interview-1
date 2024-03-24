@@ -22,4 +22,15 @@ class ArticlesController extends Controller
         
         return ArticleResource::collection($articles);      
     }
+    
+    /* for test purpose */
+    public function baseIndex(Request $request)
+    {
+        return $this->articleService->getClient()->getAll(
+            [
+                ...$request->all(),
+                'page' => $request->get('page') ?? 1
+            ]            
+        );
+    }
 }

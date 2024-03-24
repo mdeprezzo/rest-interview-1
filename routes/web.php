@@ -20,3 +20,5 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('articles', 'ArticlesController');
+/* for test purpose */
+$router->get('base/articles', 'ArticlesController@baseIndex');
